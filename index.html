@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -238,7 +239,6 @@
     <div class="footer-links">
       <a class="footer-link" href="#" onclick="showPage('contact');return false;">Contact</a>
       <a class="footer-link" href="#" onclick="showPage('about');return false;">About</a>
-      <a class="footer-link" href="tel:+17202093461">720-209-3461</a>
     </div>
   </footer>
 </div>
@@ -247,10 +247,9 @@
 <div class="page" id="page-contact">
   <div class="contact-wrap">
     <div class="page-heading">Let's <em>Connect.</em></div>
-    <div class="page-sub">Have a date in mind? Ready to start planning? Choose how you'd like to reach us and we'll get back to you within 24 hours.</div>
+    <div class="page-sub">Have a date in mind? Ready to start planning? Fill out the form below and we'll get back to you within 24 hours.</div>
     <div class="contact-toggle">
       <button class="toggle-btn active" onclick="switchContact('form',this)">Send a Message</button>
-      <button class="toggle-btn" onclick="switchContact('call',this)">Call / Text Us</button>
     </div>
     <div class="contact-panel active" id="panel-form">
       <div class="contact-grid">
@@ -260,34 +259,27 @@
           <div><label class="field-label">Phone (optional)</label><input class="field-input" type="tel" name="phone" placeholder="Your phone number" /></div>
           <div><label class="field-label">Event Type &amp; Date</label><input class="field-input" type="text" name="event" placeholder="e.g. Corporate dinner, June 2026" /></div>
           <div><label class="field-label">Message</label><textarea class="field-input" name="message" placeholder="Tell us about your event..." required></textarea></div>
+          <!-- Honeypot: hidden from humans, bots will fill this -->
+          <div style="display:none;"><input type="text" name="website" tabindex="-1" autocomplete="off" /></div>
+          <!-- reCAPTCHA: replace YOUR_SITE_KEY with your key from google.com/recaptcha -->
+          <div class="g-recaptcha" data-sitekey="6Lf1w9wsAAAAANj-4cdhjhsT5YLGQzu9MNe2z-Sj" data-theme="dark"></div>
           <button type="submit" class="submit-btn">Send Message</button>
         </form>
         <div class="contact-info">
           <div><div class="info-label">Email</div><div class="info-value"><a class="info-link" href="mailto:higherenddenver@gmail.com">higherenddenver@gmail.com</a></div></div>
-          <div class="thin-divider"></div>
-          <div><div class="info-label">Phone</div><div class="info-value"><a class="info-link" href="tel:+17202093461">720-209-3461</a></div></div>
           <div><div class="info-label">Based In</div><div class="info-value">Denver, Colorado</div></div>
           <div class="thin-divider"></div>
           <div><div class="info-label">Response Time</div><div class="info-value">Within 24 hours</div></div>
         </div>
       </div>
     </div>
-    <div class="contact-panel" id="panel-call">
-      <div class="call-panel-inner">
-        <p>Prefer to talk directly? Give us a call or send a text, we're happy to chat about your event, answer questions, or get the ball rolling right away.</p>
-        <a class="call-number" href="tel:+17202093461">720-209-3461</a>
-        <a class="call-btn" href="tel:+17202093461">Call Now →</a>
-        <a class="call-btn outline" href="sms:+17202093461">Send a Text →</a>
-        <div class="call-note">Based in Denver, CO, Available Mon–Sat</div>
-      </div>
-    </div>
+
   </div>
   <footer>
     <div class="footer-logo">Higher End</div>
     <div class="footer-copy">© 2026 Higher End LLC. All rights reserved.</div>
     <div class="footer-links">
       <a class="footer-link" href="mailto:higherenddenver@gmail.com">Email</a>
-      <a class="footer-link" href="tel:+17202093461">720-209-3461</a>
     </div>
   </footer>
 </div>
@@ -338,7 +330,6 @@
     <div class="footer-copy">© 2026 Higher End LLC. All rights reserved.</div>
     <div class="footer-links">
       <a class="footer-link" href="#" onclick="showPage('contact');return false;">Contact</a>
-      <a class="footer-link" href="tel:+17202093461">720-209-3461</a>
     </div>
   </footer>
 </div>
@@ -364,6 +355,14 @@ function switchContact(panel,btn){
 function handleSubmit(e){
   e.preventDefault();
   const f=e.target;
+  // Honeypot check — bots fill hidden fields, humans don't
+  if(f.website.value) return;
+  // reCAPTCHA check
+  const recaptchaResponse = grecaptcha.getResponse();
+  if(!recaptchaResponse){
+    alert('Please confirm you\'re not a robot.');
+    return;
+  }
   const subject=encodeURIComponent('Event Inquiry from '+f.name.value);
   const body=encodeURIComponent('Name: '+f.name.value+'\nEmail: '+f.email.value+'\nPhone: '+f.phone.value+'\nEvent: '+f.event.value+'\n\nMessage:\n'+f.message.value);
   window.location.href='mailto:higherenddenver@gmail.com?subject='+subject+'&body='+body;
