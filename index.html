@@ -3,160 +3,189 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Higher End — Denver Event Planning & Coordination</title>
+  <title>Higher End — Denver Event Planning &amp; Coordination</title>
   <meta name="description" content="Higher End offers premium corporate and social event planning, coordination, and day-of execution in Denver, Colorado." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg:#1c1917; --bg2:#221f1d; --bg3:#2a2624;
-      --blush:#d4a0a0; --blush-light:#e8c8c8; --blush-pale:#f2dede;
-      --stone:#8a7f7a; --stone-light:#b5ada8; --cream:#f0ebe6;
-      --border:rgba(212,160,160,0.18); --border-strong:rgba(212,160,160,0.38);
+      --ink:#14171b; --ink2:#1b1f24; --ink3:#242a31;
+      --brass:#c89b5c; --brass-light:#e3c592; --brass-dim:#9c7844;
+      --juniper:#6b8073; --paper:#f3eee4; --paper-dim:#cfc9bd;
+      --stone:#8d9096; --stone-light:#b4b7bc;
+      --line:rgba(200,155,92,0.14); --line-strong:rgba(200,155,92,0.4);
     }
     html { scroll-behavior: smooth; }
-    body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--cream); min-height:100vh; font-weight:300; }
-
+    body { font-family:'Inter',sans-serif; background:var(--ink); color:var(--paper); min-height:100vh; font-weight:300; }
+    ::selection { background:var(--brass); color:var(--ink); }
 
     /* NAV */
     nav {
       position:fixed; top:0; left:0; right:0; z-index:200;
-      background:rgba(28,25,23,0.96); backdrop-filter:blur(8px);
-      border-bottom:1px solid var(--border);
+      background:rgba(20,23,27,0.94); backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
       display:flex; align-items:center; justify-content:space-between;
-      padding:0 3rem; height:68px;
+      padding:0 3rem; height:72px;
     }
     .nav-logo { text-decoration:none; display:flex; align-items:center; }
-    .nav-links { display:flex; gap:4px; }
-    .nav-btn { background:none; border:none; cursor:pointer; color:var(--stone); font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:2.5px; text-transform:uppercase; padding:8px 18px; transition:color 0.25s; font-weight:400; }
-    .nav-btn:hover,.nav-btn.active { color:var(--blush-light); }
-    .nav-mobile-toggle { display:none; background:none; border:none; cursor:pointer; color:var(--blush-light); font-size:22px; }
+    .nav-logo img { filter:grayscale(1) brightness(1.6) sepia(0.35) hue-rotate(-10deg) saturate(1.4); }
+    .nav-links { display:flex; align-items:center; gap:4px; }
+    .nav-btn { background:none; border:none; cursor:pointer; color:var(--stone); font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:2.5px; text-transform:uppercase; padding:8px 18px; transition:color 0.25s; font-weight:400; position:relative; }
+    .nav-btn::after { content:''; position:absolute; left:18px; right:18px; bottom:2px; height:1px; background:var(--brass); transform:scaleX(0); transform-origin:left; transition:transform 0.25s ease; }
+    .nav-btn:hover,.nav-btn.active { color:var(--brass-light); }
+    .nav-btn:hover::after,.nav-btn.active::after { transform:scaleX(1); }
+    .nav-mobile-toggle { display:none; background:none; border:none; cursor:pointer; color:var(--brass-light); font-size:22px; }
 
     /* PAGES */
-    .page { display:none; padding-top:68px; min-height:100vh; }
+    .page { display:none; padding-top:72px; min-height:100vh; }
     .page.active { display:block; }
 
     /* HERO */
-    .hero { padding:6rem 3rem 4rem; border-bottom:1px solid var(--border); max-width:1100px; margin:0 auto; }
-    .hero-eyebrow { font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--blush); margin-bottom:1.5rem; font-weight:400; }
-    .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(56px,8vw,96px); line-height:1.0; font-weight:300; letter-spacing:1px; margin-bottom:1.5rem; }
-    .hero-title em { color:var(--blush-light); font-style:italic; }
-    .hero-sub { font-size:15px; color:var(--stone-light); max-width:480px; line-height:1.9; font-weight:300; }
-    .hero-cta { display:inline-block; margin-top:2rem; border:1px solid var(--border-strong); color:var(--blush-light); text-decoration:none; font-size:10px; letter-spacing:3px; text-transform:uppercase; padding:13px 28px; transition:all 0.25s; font-weight:400; cursor:pointer; background:transparent; }
-    .hero-cta:hover { background:var(--blush); color:var(--bg); border-color:var(--blush); }
+    .hero { padding:6.5rem 3rem 0; max-width:1180px; margin:0 auto; }
+    .hero-eyebrow { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--brass); margin-bottom:1.8rem; font-weight:400; display:flex; align-items:center; gap:12px; }
+    .hero-eyebrow::before { content:''; width:22px; height:1px; background:var(--brass-dim); }
+    .hero-title { font-family:'Fraunces',serif; font-size:clamp(52px,7.8vw,98px); line-height:0.98; font-weight:400; letter-spacing:-0.5px; margin-bottom:1.6rem; }
+    .hero-title em { color:var(--brass-light); font-style:italic; font-weight:300; }
+    .hero-sub { font-size:15px; color:var(--stone-light); max-width:460px; line-height:1.9; font-weight:300; }
+    .hero-cta { display:inline-block; margin-top:2.2rem; border:1px solid var(--line-strong); color:var(--brass-light); text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; padding:14px 30px; transition:all 0.25s; font-weight:400; cursor:pointer; background:transparent; }
+    .hero-cta:hover { background:var(--brass); color:var(--ink); border-color:var(--brass); }
 
-    /* PHOTO GRID */
-    .photo-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:3px; height:420px; margin:3px 0; }
-    .photo-card { background:var(--bg2); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
-    .photo-card img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.6s ease; }
-    .photo-card:hover img { transform:scale(1.04); }
-    .photo-overlay { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(28,25,23,0.88)); padding:24px 20px 16px; }
-    .photo-tag { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--blush-pale); font-style:italic; font-weight:300; }
+    /* RUNSHEET — signature element */
+    .runsheet { max-width:1180px; margin:4.5rem auto 0; padding:0 3rem; }
+    .runsheet-label { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--stone); margin-bottom:14px; }
+    .runsheet-track { position:relative; height:2px; background:var(--line); margin:0 6px; }
+    .runsheet-track::before { content:''; position:absolute; left:0; top:50%; transform:translateY(-50%); height:2px; width:100%; background:linear-gradient(90deg, var(--brass-dim), var(--brass) 55%, var(--juniper)); opacity:0.85; }
+    .runsheet-ticks { display:flex; justify-content:space-between; position:relative; }
+    .rt-item { position:relative; padding-top:14px; flex:1; text-align:left; }
+    .rt-item:last-child { text-align:right; }
+    .rt-item::before { content:''; position:absolute; top:0; left:0; width:1px; height:10px; background:var(--brass-light); transform:translateY(-6px); }
+    .rt-item:last-child::before { left:auto; right:0; }
+    .rt-time { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--brass-light); letter-spacing:0.5px; }
+    .rt-desc { font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--stone); letter-spacing:1.5px; text-transform:uppercase; margin-top:3px; }
 
+    /* PILLARS */
+    .pillars { max-width:1180px; margin:5.5rem auto 0; padding:0 3rem; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+    .pillar { background:var(--ink); padding:2.4rem 2rem; }
+    .pillar-mark { font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:var(--brass); margin-bottom:1rem; }
+    .pillar-title { font-size:15px; color:var(--paper); font-weight:500; margin-bottom:0.6rem; }
+    .pillar-desc { font-size:13px; color:var(--stone-light); line-height:1.75; font-weight:300; }
 
+    /* SECTION LABEL */
+    .section-label { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--brass); padding:6rem 3rem 1.4rem; display:flex; align-items:center; gap:16px; max-width:1180px; margin:0 auto; }
+    .section-label::after { content:''; flex:1; height:1px; background:var(--line); }
 
     /* BOOKING */
-    .section-label { font-size:9px; letter-spacing:5px; text-transform:uppercase; color:var(--blush); padding:2.5rem 3rem 1.2rem; display:flex; align-items:center; gap:16px; max-width:1100px; margin:0 auto; }
-    .section-label::after { content:''; flex:1; height:1px; background:var(--border); }
-    .booking-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; background:var(--border); margin:0 3px 3px; }
-    .booking-card { background:var(--bg2); padding:2.5rem; display:flex; flex-direction:column; gap:14px; transition:background 0.3s; }
-    .booking-card:hover { background:var(--bg3); }
-    .booking-card.featured { background:var(--bg3); border-top:1px solid var(--blush); }
-    .booking-num { font-family:'Cormorant Garamond',serif; font-size:48px; color:var(--border-strong); line-height:1; font-weight:300; }
-    .booking-name { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--cream); font-weight:500; }
-    .booking-desc { font-size:13px; color:var(--stone-light); line-height:1.8; flex:1; font-weight:300; }
-    .booking-includes { display:flex; flex-direction:column; gap:8px; }
+    .booking-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); margin:0 auto 3px; max-width:1180px; padding:0 3rem; border-left:1px solid var(--line); border-right:1px solid var(--line); }
+    .booking-card { background:var(--ink2); padding:2.6rem 2.2rem; display:flex; flex-direction:column; gap:14px; transition:background 0.3s; }
+    .booking-card:hover { background:var(--ink3); }
+    .booking-card.featured { background:var(--ink3); position:relative; }
+    .booking-card.featured::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--brass-dim),var(--brass-light)); }
+    .booking-num { font-family:'Fraunces',serif; font-style:italic; font-size:44px; color:var(--brass-dim); line-height:1; font-weight:300; }
+    .booking-name { font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--paper); font-weight:500; font-family:'IBM Plex Mono',monospace; }
+    .booking-desc { font-size:13.5px; color:var(--stone-light); line-height:1.85; flex:1; font-weight:300; }
+    .booking-includes { display:flex; flex-direction:column; gap:9px; }
     .booking-item { font-size:12px; color:var(--stone-light); display:flex; align-items:center; gap:10px; font-weight:300; }
-    .booking-item::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--blush); flex-shrink:0; }
-    .book-btn { background:transparent; border:1px solid var(--border-strong); color:var(--blush-light); font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; padding:12px 18px; cursor:pointer; transition:all 0.25s; margin-top:8px; text-align:center; font-weight:400; display:block; }
-    .book-btn:hover { background:var(--blush); color:var(--bg); border-color:var(--blush); }
-    .booking-card.featured .book-btn { background:var(--blush); color:var(--bg); border-color:var(--blush); }
-    .booking-card.featured .book-btn:hover { background:var(--blush-light); border-color:var(--blush-light); }
-    .badge { display:inline-block; background:rgba(212,160,160,0.12); border:1px solid var(--border-strong); color:var(--blush-light); font-size:8px; letter-spacing:2.5px; text-transform:uppercase; padding:4px 12px; align-self:flex-start; font-weight:400; }
+    .booking-item::before { content:''; width:3px; height:3px; background:var(--brass); flex-shrink:0; }
+    .book-btn { background:transparent; border:1px solid var(--line-strong); color:var(--brass-light); font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:13px 18px; cursor:pointer; transition:all 0.25s; margin-top:8px; text-align:center; font-weight:400; display:block; }
+    .book-btn:hover { background:var(--brass); color:var(--ink); border-color:var(--brass); }
+    .booking-card.featured .book-btn { background:var(--brass); color:var(--ink); border-color:var(--brass); }
+    .booking-card.featured .book-btn:hover { background:var(--brass-light); border-color:var(--brass-light); }
+    .badge { display:inline-block; background:rgba(200,155,92,0.1); border:1px solid var(--line-strong); color:var(--brass-light); font-family:'IBM Plex Mono',monospace; font-size:8px; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; align-self:flex-start; font-weight:400; }
+
+    /* SERVICES (two-tab) */
+    .services-wrap { max-width:1180px; margin:0 auto; padding:0 3rem 2rem; }
+    .service-tabs { display:flex; gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:1px; }
+    .stab-btn { flex:1; background:var(--ink2); border:none; cursor:pointer; color:var(--stone-light); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; padding:20px 22px; text-align:left; transition:background 0.25s,color 0.25s; position:relative; }
+    .stab-btn .stab-num { display:block; font-family:'Fraunces',serif; font-style:italic; font-size:26px; color:var(--brass-dim); margin-bottom:6px; font-weight:300; letter-spacing:0; }
+    .stab-btn:hover { background:var(--ink3); color:var(--paper); }
+    .stab-btn.active { background:var(--ink3); color:var(--brass-light); }
+    .stab-btn.active .stab-num { color:var(--brass); }
+    .stab-btn.active::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--brass-dim),var(--brass-light)); }
+    .service-panel { display:none; background:var(--ink2); border:1px solid var(--line); border-top:none; padding:3rem; }
+    .service-panel.active { display:grid; grid-template-columns:1.1fr 1fr; gap:3.5rem; }
+    .service-desc-col { display:flex; flex-direction:column; gap:1.4rem; }
+    .service-tagline { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--brass); }
+    .service-title { font-family:'Fraunces',serif; font-size:clamp(28px,3.2vw,38px); font-weight:400; letter-spacing:-0.3px; line-height:1.1; }
+    .service-title em { color:var(--brass-light); font-style:italic; font-weight:300; }
+    .service-copy { font-size:14px; color:var(--stone-light); line-height:1.9; font-weight:300; max-width:440px; }
+    .service-cta { display:inline-block; align-self:flex-start; margin-top:0.4rem; background:var(--brass); color:var(--ink); border:none; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; padding:14px 30px; cursor:pointer; transition:background 0.25s; }
+    .service-cta:hover { background:var(--brass-light); }
+    .service-includes { display:flex; flex-direction:column; gap:14px; justify-content:center; }
+    .service-item { display:flex; align-items:flex-start; gap:12px; font-size:13.5px; color:var(--stone-light); line-height:1.6; font-weight:300; padding-bottom:14px; border-bottom:1px solid var(--line); }
+    .service-item:last-child { border-bottom:none; padding-bottom:0; }
+    .service-item::before { content:''; width:4px; height:4px; margin-top:7px; background:var(--brass); flex-shrink:0; }
 
     /* CONTACT */
-    .contact-wrap { max-width:1100px; margin:0 auto; padding:5rem 3rem 4rem; }
-    .page-heading { font-family:'Cormorant Garamond',serif; font-size:clamp(44px,6vw,72px); font-weight:300; letter-spacing:1px; margin-bottom:0.5rem; line-height:1.1; }
-    .page-heading em { color:var(--blush-light); font-style:italic; }
-    .page-sub { font-size:14px; color:var(--stone-light); margin-bottom:3.5rem; line-height:1.9; font-weight:300; max-width:500px; }
-    .contact-toggle { display:flex; gap:3px; margin-bottom:2.5rem; background:var(--border); padding:3px; width:fit-content; }
-    .toggle-btn { background:transparent; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--stone); padding:10px 24px; transition:all 0.2s; font-weight:400; }
-    .toggle-btn.active { background:var(--blush); color:var(--bg); }
-    .contact-panel { display:none; }
-    .contact-panel.active { display:block; }
-    .contact-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:4rem; }
-    .contact-form { display:flex; flex-direction:column; gap:20px; }
-    .field-label { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--blush); display:block; margin-bottom:8px; font-weight:400; }
-    .field-input { width:100%; background:transparent; border:none; border-bottom:1px solid var(--border); color:var(--cream); font-family:'DM Sans',sans-serif; font-size:14px; padding:10px 0; outline:none; transition:border-color 0.25s; font-weight:300; }
+    .contact-wrap { max-width:1180px; margin:0 auto; padding:5.5rem 3rem 4rem; }
+    .page-heading { font-family:'Fraunces',serif; font-size:clamp(42px,5.6vw,68px); font-weight:400; letter-spacing:-0.5px; margin-bottom:0.6rem; line-height:1.06; }
+    .page-heading em { color:var(--brass-light); font-style:italic; font-weight:300; }
+    .page-sub { font-size:14px; color:var(--stone-light); margin-bottom:3.5rem; line-height:1.9; font-weight:300; max-width:480px; }
+    .contact-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:4.5rem; }
+    .contact-form { display:flex; flex-direction:column; gap:22px; }
+    .field-label { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:2.5px; text-transform:uppercase; color:var(--brass); display:block; margin-bottom:9px; font-weight:400; }
+    .field-input { width:100%; background:transparent; border:none; border-bottom:1px solid var(--line-strong); color:var(--paper); font-family:'Inter',sans-serif; font-size:14px; padding:10px 0; outline:none; transition:border-color 0.25s; font-weight:300; }
     .field-input::placeholder { color:var(--stone); }
-    .field-input:focus { border-bottom-color:var(--blush); }
+    .field-input:focus { border-bottom-color:var(--brass); }
     textarea.field-input { resize:none; height:100px; }
-    .submit-btn { background:var(--blush); color:var(--bg); border:none; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; font-weight:500; padding:14px 32px; align-self:flex-start; transition:background 0.25s; }
-    .submit-btn:hover { background:var(--blush-light); }
+    .submit-btn { background:var(--brass); color:var(--ink); border:none; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; font-weight:500; padding:15px 32px; align-self:flex-start; transition:background 0.25s; }
+    .submit-btn:hover { background:var(--brass-light); }
     .contact-info { display:flex; flex-direction:column; gap:2rem; padding-top:0.5rem; }
-    .info-label { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--blush); margin-bottom:8px; font-weight:400; }
+    .info-label { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:2.5px; text-transform:uppercase; color:var(--brass); margin-bottom:8px; font-weight:400; }
     .info-value { font-size:14px; color:var(--stone-light); line-height:1.9; font-weight:300; }
-    .info-link { color:var(--blush-light); text-decoration:none; transition:color 0.2s; }
-    .info-link:hover { color:var(--blush-pale); }
-    .thin-divider { width:28px; height:1px; background:var(--border-strong); }
-    .call-panel-inner { display:flex; flex-direction:column; align-items:flex-start; gap:1.5rem; max-width:500px; }
-    .call-panel-inner p { font-size:14px; color:var(--stone-light); line-height:1.9; font-weight:300; }
-    .call-number { font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:300; color:var(--blush-light); letter-spacing:2px; text-decoration:none; transition:color 0.2s; }
-    .call-number:hover { color:var(--blush-pale); }
-    .call-btn { background:var(--blush); color:var(--bg); text-decoration:none; font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; font-weight:500; padding:14px 32px; transition:background 0.25s; display:inline-block; }
-    .call-btn:hover { background:var(--blush-light); }
-    .call-btn.outline { background:transparent; border:1px solid var(--border-strong); color:var(--blush-light); }
-    .call-btn.outline:hover { background:var(--blush); color:var(--bg); }
-    .call-note { font-size:11px; color:var(--stone); font-style:italic; }
+    .info-link { color:var(--brass-light); text-decoration:none; transition:color 0.2s; }
+    .info-link:hover { color:var(--paper); }
+    .thin-divider { width:28px; height:1px; background:var(--line-strong); }
+    .reveal-btn { background:transparent; border:1px solid var(--line-strong); color:var(--brass-light); font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; padding:9px 16px; cursor:pointer; transition:all 0.2s; }
+    .reveal-btn:hover { background:var(--brass); color:var(--ink); border-color:var(--brass); }
 
     /* ABOUT */
-    .about-wrap { max-width:1100px; margin:0 auto; padding:5rem 3rem 4rem; }
-    .about-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:4rem; margin-bottom:4rem; align-items:start; }
-    .about-photo-box { position:relative; overflow:hidden; }
-    .about-photo-box img { width:100%; height:100%; object-fit:cover; display:block; }
-    .about-bio { display:flex; flex-direction:column; gap:1.2rem; padding-top:0.5rem; }
-    .about-bio p { font-size:14px; color:var(--stone-light); line-height:1.95; font-weight:300; }
-    .about-bio em { color:var(--blush-light); font-style:italic; }
-    .about-name { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300; color:var(--blush-light); letter-spacing:1px; margin-bottom:0.5rem; }
-    .about-role { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--blush); margin-bottom:1.5rem; font-weight:400; }
-    .acc-section-title { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--blush-light); margin-bottom:2rem; letter-spacing:1px; }
-    .acc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; background:var(--border); margin-bottom:3px; }
-    .acc-card { background:var(--bg2); padding:2rem; display:flex; flex-direction:column; gap:8px; }
-    .acc-num { font-family:'Cormorant Garamond',serif; font-size:44px; color:var(--blush); line-height:1; font-weight:300; }
+    .about-wrap { max-width:1180px; margin:0 auto; padding:5.5rem 3rem 4rem; }
+    .about-bio { display:flex; flex-direction:column; gap:1.3rem; padding-top:0.5rem; max-width:680px; }
+    .about-bio p { font-size:14.5px; color:var(--stone-light); line-height:2; font-weight:300; }
+    .about-bio em { color:var(--brass-light); font-style:italic; }
+    .about-name { font-family:'Fraunces',serif; font-size:30px; font-weight:400; color:var(--brass-light); letter-spacing:-0.3px; margin-bottom:0.4rem; }
+    .about-role { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--brass); margin-bottom:1.6rem; font-weight:400; }
+    .acc-section-title { font-family:'Fraunces',serif; font-style:italic; font-size:32px; font-weight:400; color:var(--brass-light); margin-bottom:2rem; letter-spacing:-0.3px; }
+    .acc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); margin-bottom:3px; border:1px solid var(--line); }
+    .acc-card { background:var(--ink2); padding:2rem; display:flex; flex-direction:column; gap:8px; }
+    .acc-num { font-family:'Fraunces',serif; font-size:42px; color:var(--brass); line-height:1; font-weight:400; }
     .acc-desc { font-size:12px; color:var(--stone-light); line-height:1.7; }
-    .acc-list { margin-top:3px; }
-    .acc-row { display:flex; align-items:center; gap:1.5rem; padding:16px 0; border-bottom:1px solid var(--border); }
-    .acc-year { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--blush); min-width:52px; font-weight:300; }
-    .acc-event { font-size:13px; color:var(--cream); font-weight:300; }
-    .acc-role-tag { font-size:11px; color:var(--stone); margin-left:auto; white-space:nowrap; font-weight:300; }
+    .acc-list { margin-top:1.5rem; }
+    .acc-row { display:flex; align-items:center; gap:1.5rem; padding:16px 0; border-bottom:1px solid var(--line); }
+    .acc-year { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--brass); min-width:52px; font-weight:400; }
+    .acc-event { font-size:13px; color:var(--paper); font-weight:300; }
+    .acc-role-tag { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--stone); margin-left:auto; white-space:nowrap; font-weight:400; letter-spacing:0.5px; }
 
     /* FOOTER */
-    footer { border-top:1px solid var(--border); padding:2rem 3rem; display:flex; align-items:center; justify-content:space-between; margin-top:4rem; }
-    .footer-logo { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; letter-spacing:4px; color:var(--stone); text-transform:uppercase; }
-    .footer-copy { font-size:11px; color:var(--stone); letter-spacing:1px; }
+    footer { border-top:1px solid var(--line); padding:2.2rem 3rem; display:flex; align-items:center; justify-content:space-between; margin-top:5rem; }
+    .footer-logo { font-family:'Fraunces',serif; font-style:italic; font-size:19px; font-weight:400; letter-spacing:1px; color:var(--stone-light); }
+    .footer-copy { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--stone); letter-spacing:0.5px; }
     .footer-links { display:flex; gap:20px; }
-    .footer-link { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--stone); text-decoration:none; transition:color 0.2s; }
-    .footer-link:hover { color:var(--blush-light); }
+    .footer-link { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--stone); text-decoration:none; transition:color 0.2s; }
+    .footer-link:hover { color:var(--brass-light); }
 
     /* RESPONSIVE */
     @media(max-width:768px){
       nav { padding:0 1.5rem; }
-      .nav-links { display:none; flex-direction:column; position:absolute; top:68px; left:0; right:0; background:var(--bg); border-bottom:1px solid var(--border); padding:1rem 0; }
+      .nav-links { display:none; flex-direction:column; position:absolute; top:72px; left:0; right:0; background:var(--ink); border-bottom:1px solid var(--line); padding:1rem 0; }
       .nav-links.open { display:flex; }
       .nav-mobile-toggle { display:block; }
-      .hero { padding:3rem 1.5rem 2.5rem; }
-      .photo-grid { grid-template-columns:1fr; height:auto; }
-      .photo-card { height:260px; }
-      .services-strip,.booking-grid { grid-template-columns:1fr; }
+      .hero { padding:3.5rem 1.5rem 0; }
+      .runsheet { padding:0 1.5rem; margin-top:3rem; }
+      .rt-desc { display:none; }
+      .pillars { grid-template-columns:1fr; padding:0 1.5rem; margin-top:3.5rem; }
+      .services-wrap { padding:0 1.5rem 2rem; }
+      .service-tabs { flex-direction:column; }
+      .service-panel { padding:2rem 1.5rem; }
+      .service-panel.active { grid-template-columns:1fr; gap:2rem; }
       .contact-wrap,.about-wrap { padding:3rem 1.5rem; }
       .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
-      .about-grid { grid-template-columns:1fr; }
       .acc-grid { grid-template-columns:1fr; }
       footer { flex-direction:column; gap:1rem; text-align:center; }
-      .section-label { padding:2rem 1.5rem 1rem; }
+      .section-label { padding:3.5rem 1.5rem 1rem; }
     }
 
     /* ANIMATIONS */
@@ -165,6 +194,10 @@
     .page.active .hero-title   { animation:fadeUp 0.7s 0.1s ease both; }
     .page.active .hero-sub     { animation:fadeUp 0.7s 0.2s ease both; }
     .page.active .hero-cta     { animation:fadeUp 0.7s 0.3s ease both; }
+    .page.active .runsheet     { animation:fadeUp 0.8s 0.35s ease both; }
+    @media (prefers-reduced-motion: reduce) {
+      .page.active .hero-eyebrow, .page.active .hero-title, .page.active .hero-sub, .page.active .hero-cta, .page.active .runsheet { animation:none; }
+    }
   </style>
 </head>
 <body>
@@ -183,53 +216,86 @@
 <div class="page active" id="page-home">
   <div class="hero">
     <div class="hero-eyebrow">Corporate &amp; Social Event Management — Denver, CO</div>
-    <div class="hero-title">Events<br>Executed <em>Right.</em></div>
+    <div class="hero-title">Every Minute,<br>Accounted <em>For.</em></div>
     <div class="hero-sub">From the first call to the final toast, Higher End delivers flawless coordination, creative planning, and a dedicated team on the day that matters most.</div>
     <button class="hero-cta" onclick="showPage('contact')">Start Planning →</button>
   </div>
 
-  
-    
-
-  <div class="section-label">Choose Your Package</div>
-
-  <div class="booking-grid">
-    <div class="booking-card">
-      <div class="booking-num">01</div>
-      <div class="booking-name">Day-Of Coverage</div>
-      <div class="booking-desc">You planned it. We execute it. Our team arrives and runs the full day so you can be present and enjoy every moment.</div>
-      <div class="booking-includes">
-        <div class="booking-item">Full day-of team on site</div>
-        <div class="booking-item">Vendor coordination</div>
-        <div class="booking-item">Timeline management</div>
-        <div class="booking-item">Problem solving &amp; logistics</div>
-      </div>
-      <button class="book-btn" onclick="showPage('contact')">Get In Touch →</button>
+  <div class="runsheet" aria-hidden="true">
+    <div class="runsheet-label">A Day, Run On Time</div>
+    <div class="runsheet-track"></div>
+    <div class="runsheet-ticks">
+      <div class="rt-item"><div class="rt-time">4:00</div><div class="rt-desc">Load-In</div></div>
+      <div class="rt-item"><div class="rt-time">6:00</div><div class="rt-desc">Doors</div></div>
+      <div class="rt-item"><div class="rt-time">7:30</div><div class="rt-desc">Dinner</div></div>
+      <div class="rt-item"><div class="rt-time">9:00</div><div class="rt-desc">Dance Floor</div></div>
+      <div class="rt-item"><div class="rt-time">11:00</div><div class="rt-desc">Guests Depart</div></div>
+      <div class="rt-item"><div class="rt-time">12:00</div><div class="rt-desc">Cleanup Done</div></div>
     </div>
-    <div class="booking-card featured">
-      <div class="badge">Most Popular</div>
-      <div class="booking-num">02</div>
-      <div class="booking-name">Planning + Day-Of</div>
-      <div class="booking-desc">Full event planning from concept to execution, plus our team on site to bring every detail to life exactly as envisioned.</div>
-      <div class="booking-includes">
-        <div class="booking-item">Event concept &amp; planning</div>
-        <div class="booking-item">Vendor sourcing &amp; management</div>
-        <div class="booking-item">Budget management</div>
-        <div class="booking-item">Full day-of team on site</div>
-      </div>
-      <button class="book-btn" onclick="showPage('contact')">Get In Touch →</button>
+  </div>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-mark">I.</div>
+      <div class="pillar-title">Plan With Precision</div>
+      <div class="pillar-desc">Timelines, vendors, and budgets mapped before the first guest ever arrives.</div>
     </div>
-    <div class="booking-card">
-      <div class="booking-num">03</div>
-      <div class="booking-name">Full Service</div>
-      <div class="booking-desc">The complete Higher End experience, from planning and venue walkthrough all the way through flawless day-of execution.</div>
-      <div class="booking-includes">
-        <div class="booking-item">Everything in Package 02</div>
-        <div class="booking-item">Venue walkthrough &amp; review</div>
-        <div class="booking-item">Logistics &amp; flow assessment</div>
-        <div class="booking-item">Priority support throughout</div>
+    <div class="pillar">
+      <div class="pillar-mark">II.</div>
+      <div class="pillar-title">Staff With Care</div>
+      <div class="pillar-desc">A trained, dependable team that treats every event like the only one that matters.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-mark">III.</div>
+      <div class="pillar-title">Execute Without Drama</div>
+      <div class="pillar-desc">Problems get solved quietly, on the day, so you never have to know they happened.</div>
+    </div>
+  </div>
+
+  <div class="section-label">Our Services</div>
+
+  <div class="services-wrap">
+    <div class="service-tabs">
+      <button class="stab-btn active" onclick="switchService('coordination', this)">
+        <span class="stab-num">I.</span>
+        Event Coordination &amp; Planning
+      </button>
+      <button class="stab-btn" onclick="switchService('staffing', this)">
+        <span class="stab-num">II.</span>
+        Day-Of Staff Team
+      </button>
+    </div>
+
+    <div class="service-panel active" id="service-coordination">
+      <div class="service-desc-col">
+        <div class="service-tagline">Concept Through Execution</div>
+        <div class="service-title">We plan it, <em>you enjoy it.</em></div>
+        <div class="service-copy">From the very first conversation to the final walkthrough, we build the timeline, source the vendors, manage the budget, and make sure every detail is decided before the day arrives — so nothing gets figured out on the fly.</div>
+        <button class="service-cta" onclick="showPage('contact')">Get In Touch →</button>
       </div>
-      <button class="book-btn" onclick="showPage('contact')">Get In Touch →</button>
+      <div class="service-includes">
+        <div class="service-item">Event concept &amp; full-scale planning</div>
+        <div class="service-item">Vendor sourcing, booking &amp; management</div>
+        <div class="service-item">Budget building &amp; ongoing tracking</div>
+        <div class="service-item">Timeline &amp; run-of-show design</div>
+        <div class="service-item">Venue walkthrough &amp; logistics review</div>
+      </div>
+    </div>
+
+    <div class="service-panel" id="service-staffing">
+      <div class="service-desc-col">
+        <div class="service-tagline">On-Site Execution</div>
+        <div class="service-title">Already planned? <em>We'll run it.</em></div>
+        <div class="service-copy">You handled the planning — now let a trained, dependable crew handle the day. Captains, banquet servers, and bartenders who show up on time, know the timeline, and keep everything moving without pulling you away from your own event.</div>
+        <button class="service-cta" onclick="showPage('contact')">Get In Touch →</button>
+      </div>
+      <div class="service-includes">
+        <div class="service-item">Full day-of staff team on site</div>
+        <div class="service-item">Captains, banquet servers &amp; bartenders</div>
+        <div class="service-item">Vendor &amp; timeline coordination</div>
+        <div class="service-item">Real-time problem solving &amp; logistics</div>
+        <div class="service-item">Setup through cleanup coverage</div>
+      </div>
     </div>
   </div>
 
@@ -248,32 +314,27 @@
   <div class="contact-wrap">
     <div class="page-heading">Let's <em>Connect.</em></div>
     <div class="page-sub">Have a date in mind? Ready to start planning? Fill out the form below and we'll get back to you within 24 hours.</div>
-    <div class="contact-toggle">
-      <button class="toggle-btn active" onclick="switchContact('form',this)">Send a Message</button>
-    </div>
-    <div class="contact-panel active" id="panel-form">
-      <div class="contact-grid">
-        <form class="contact-form" onsubmit="handleSubmit(event)">
-          <div><label class="field-label">Your Name</label><input class="field-input" type="text" name="name" placeholder="Full name" required /></div>
-          <div><label class="field-label">Email</label><input class="field-input" type="email" name="email" placeholder="you@email.com" required /></div>
-          <div><label class="field-label">Phone (optional)</label><input class="field-input" type="tel" name="phone" placeholder="Your phone number" /></div>
-          <div><label class="field-label">Event Type &amp; Date</label><input class="field-input" type="text" name="event" placeholder="e.g. Corporate dinner, June 2026" /></div>
-          <div><label class="field-label">Message</label><textarea class="field-input" name="message" placeholder="Tell us about your event..." required></textarea></div>
-          <!-- Honeypot: hidden from humans, bots will fill this -->
-          <div style="display:none;"><input type="text" name="website" tabindex="-1" autocomplete="off" /></div>
-          <!-- reCAPTCHA: replace YOUR_SITE_KEY with your key from google.com/recaptcha -->
-          <div class="g-recaptcha" data-sitekey="6Lf1w9wsAAAAANj-4cdhjhsT5YLGQzu9MNe2z-Sj" data-theme="dark"></div>
-          <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-        <div class="contact-info">
-          <div><div class="info-label">Email</div><div class="info-value"><a class="info-link" href="mailto:higherenddenver@gmail.com">higherenddenver@gmail.com</a></div></div>
-          <div><div class="info-label">Based In</div><div class="info-value">Denver, Colorado</div></div>
-          <div class="thin-divider"></div>
-          <div><div class="info-label">Response Time</div><div class="info-value">Within 24 hours</div></div>
-        </div>
+    <div class="contact-grid">
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div><label class="field-label">Your Name</label><input class="field-input" type="text" name="name" placeholder="Full name" required /></div>
+        <div><label class="field-label">Email</label><input class="field-input" type="email" name="email" placeholder="you@email.com" required /></div>
+        <div><label class="field-label">Phone (optional)</label><input class="field-input" type="tel" name="phone" placeholder="Your phone number" /></div>
+        <div><label class="field-label">Event Type &amp; Date</label><input class="field-input" type="text" name="event" placeholder="e.g. Corporate dinner, June 2026" /></div>
+        <div><label class="field-label">Message</label><textarea class="field-input" name="message" placeholder="Tell us about your event..." required></textarea></div>
+        <!-- Honeypot: hidden from humans, bots will fill this -->
+        <div style="display:none;"><input type="text" name="website" tabindex="-1" autocomplete="off" /></div>
+        <!-- reCAPTCHA: replace YOUR_SITE_KEY with your key from google.com/recaptcha -->
+        <div class="g-recaptcha" data-sitekey="6Lf1w9wsAAAAANj-4cdhjhsT5YLGQzu9MNe2z-Sj" data-theme="dark"></div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+      <div class="contact-info">
+        <div><div class="info-label">Email</div><div class="info-value"><a class="info-link" href="mailto:higherenddenver@gmail.com">higherenddenver@gmail.com</a></div></div>
+        <div><div class="info-label">Phone</div><div class="info-value" id="phoneReveal"><button class="reveal-btn" onclick="revealPhone()">Show Number</button></div></div>
+        <div><div class="info-label">Based In</div><div class="info-value">Denver, Colorado</div></div>
+        <div class="thin-divider"></div>
+        <div><div class="info-label">Response Time</div><div class="info-value">Within 24 hours</div></div>
       </div>
     </div>
-
   </div>
   <footer>
     <div class="footer-logo">Higher End</div>
@@ -299,7 +360,7 @@
         <p><em>When you book Higher End, you're not hiring a vendor. You're bringing in a team that treats your event like it's the only one that matters, because on that day, it is.</em></p>
       </div>
 
-    <div style="margin-top:3rem;"></div>
+    <div style="margin-top:3.5rem;"></div>
     <div class="acc-section-title">By The Numbers</div>
     <div class="acc-grid">
       <div class="acc-card"><div class="acc-num">8</div><div class="acc-desc">Events successfully executed</div></div>
@@ -346,10 +407,19 @@ function showPage(id){
   document.getElementById('navLinks').classList.remove('open');
 }
 function toggleMobileNav(){document.getElementById('navLinks').classList.toggle('open');}
-function switchContact(panel,btn){
-  document.querySelectorAll('.contact-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('panel-'+panel).classList.add('active');
+function revealPhone(){
+  // PLACEHOLDER NUMBER — replace these 10 digits with your real number.
+  // Kept out of the page's raw HTML/text so scraper bots that just read
+  // markup never see it; it's only built and shown after a real click.
+  var d = [7,2,0,2,0,9,3,4,6,1];
+  var formatted = '('+d.slice(0,3).join('')+') '+d.slice(3,6).join('')+'-'+d.slice(6).join('');
+  document.getElementById('phoneReveal').innerHTML =
+    '<a class="info-link" href="tel:+1'+d.join('')+'">'+formatted+'</a>';
+}
+function switchService(id,btn){
+  document.querySelectorAll('.service-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.stab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('service-'+id).classList.add('active');
   btn.classList.add('active');
 }
 function handleSubmit(e){
